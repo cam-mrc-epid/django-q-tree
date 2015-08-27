@@ -13,7 +13,7 @@ setup(
     packages=['q_tree'],
     include_package_data=True,
     install_requires = ['django-mptt', 'django-polymorphic',
-                        'django-polymorphic-tree', 'django-tinymce',
+                        'django-polymorphic-tree',
                         ],
     dependency_links = ['https://github.com/davidgillies/xml-objectifier'],
     license='',  # example license
