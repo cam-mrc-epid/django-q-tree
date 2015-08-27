@@ -1,6 +1,8 @@
 # django-q-tree
 
 ##Installation  
+Note: This commands below are dependent on Django 1.7 at the moment.  1.8 has changed the argument parsing so that will need fixing.
+
 Install the objectifier dependency.
 
     pip install git+git://github.com/davidgillies/xml-objectifier
