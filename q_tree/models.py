@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from polymorphic_tree.models import PolymorphicMPTTModel, PolymorphicTreeForeignKey
-from tinymce.models import HTMLField
 
 
 class BaseTreeNode(PolymorphicMPTTModel):
@@ -24,7 +23,7 @@ class Questionnaire(BaseTreeNode):
     version_number = models.CharField(max_length=50)
     version_date = models.CharField(blank=True, null=True, max_length=50)
     subtitle = models.CharField(blank=True, null=True, max_length=50)
-    info = models.CharField(blank=True, null=True, max_length=50) # HTMLField would be good.
+    info = models.CharField(blank=True, null=True, max_length=50) 
     # rendering_hints = 
     # lang
     q_id = models.CharField(blank=True, null=True, max_length=10)
@@ -39,9 +38,6 @@ class Section(BaseTreeNode):
     # info
     # video
     # rendering_hints
-    header = HTMLField(blank=True, null=True)
-    footer = HTMLField(blank=True, null=True)
-
     
     class Meta:
         verbose_name = _("Section")
@@ -54,10 +50,6 @@ class QuestionGroup(BaseTreeNode):
     # info
     # video
     # rendering_hints
-    header = HTMLField(blank=True, null=True)
-    footer = HTMLField(blank=True, null=True)
-    
-    # could have qg have get_questions, get_text_nodes methods.
     
     class Meta:
         verbose_name = _("Question Group")
