@@ -59,7 +59,9 @@ class ImportApplication(objectifier.Application):
                             tn_data = Bunch()
                             tn_data.t_id = 't_id'
                             try:
-                                tn_data.title = qgo.text
+                                tn_data.title = qgo.text.strip()
+                                if tn_data.title == '':
+                                    tn_date.title = 'no title'
                             except:
                                 tn_data.title = 'no title'
                             try:
