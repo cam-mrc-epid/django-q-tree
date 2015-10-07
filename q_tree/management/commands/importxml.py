@@ -34,6 +34,7 @@ class ImportApplication(objectifier.Application):
                 section = str(k)
                 section_data = Bunch()
                 section_data.title = 'Section_%s' % k
+                section_data.position = k
                 section_data.parent = q
                 s = Section.objects.create(**section_data)
                 self.add_properties(self.sections[section], s)

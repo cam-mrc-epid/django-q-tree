@@ -35,6 +35,7 @@ class Questionnaire(BaseTreeNode):
 
 
 class Section(BaseTreeNode):
+    position = models.IntegerField()
     # info
     # video
     # rendering_hints
