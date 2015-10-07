@@ -1,0 +1,50 @@
+            {% for xp in thing.xmlproperty_set.all %}
+            {% if xp.key == 1 %}
+            <epi:renderingHint>
+            <epi:rhType>tdclass</epi:rhType>
+            <epi:rhData>{{ xp.value }}</epi:rhData>
+        </epi:renderingHint>
+            {% endif %}
+            {% if xp.key == 2 %}
+            <epi:renderingHint>
+            <epi:rhType>qtype</epi:rhType>
+            <epi:rhData>{{ xp.value }}</epi:rhData>
+        </epi:renderingHint>
+            {% endif %}
+            {% if xp.key == 3 %}
+            <epi:renderingHint>
+            <epi:rhType>endoftr</epi:rhType>
+            <epi:rhData>{{ xp.value }}</epi:rhData>
+        </epi:renderingHint>
+            {% endif %}
+            {% if xp.key == 4 %}
+            <epi:renderingHint>
+            <epi:rhType>shownumber</epi:rhType>
+            <epi:rhData>{{ xp.value }}</epi:rhData>
+        </epi:renderingHint>
+            {% endif %}
+            {% if xp.key == 5 %}
+            <epi:renderingHint>
+            <epi:rhType>table</epi:rhType>
+            <epi:rhData>{{ xp.value }}</epi:rhData>
+        </epi:renderingHint>
+            {% endif %}
+            {% if xp.key == 6 %}
+            <epi:renderingHint>
+            <epi:rhType>size</epi:rhType>
+            <epi:rhData>{{ xp.value }}</epi:rhData>
+        </epi:renderingHint>
+            {% endif %}
+            {% if xp.key == 7 %}
+            <epi:renderingHint>
+            <epi:rhType>tdclass</epi:rhType>
+            <epi:rhData>{{ xp.value }}</epi:rhData>
+        </epi:renderingHint>
+            {% endif %}
+            {% if xp.key == 8 %}
+            <epi:renderingHint>
+            <epi:rhType>search</epi:rhType>
+            <epi:rhData>{{ xp.value }}</epi:rhData>
+        </epi:renderingHint>
+            {% endif %}
+            {% endfor %}

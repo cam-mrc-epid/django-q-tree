@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<epi:questionnaire ID="{{ q.title }}" lang="eng" css="questionnaire.css" xsi:schemaLocation="http://www.mrc-epid.cam.ac.uk/schema/common/epi XSD/questionnaireSchema_010.xsd" xmlns:epi="http://www.mrc-epid.cam.ac.uk/schema/common/epi" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <epi:metadata>
+        <dc:date/>
+        <dc:description/>
+        <dc:identifier/>
+        <dc:publisher/>
+        <dc:title/>
+        <dc:type/>
+        <epi:version/>
+    </epi:metadata>
+<epi:author>{{ q.author }}</epi:author>
+<epi:studyName>{{ q.study_name }}</epi:studyName>
+<epi:versionNumber>{{ q.version_number }}</epi:versionNumber>
+<epi:versionDate>{{ q.version_date }}</epi:versionDate>
+<epi:title>{{ q.title }}</epi:title>
+
+
+{% for c in q.get_children %}
+    <epi:section position="{{ c.position }}">
+        <epi:title>{{ c.title }}</epi:title>
+        {% for i in c.infoproperty_set.all %}
+        {% if i.text == None %}
+        <epi:info cssClass="{{ i.value }}"/>
+        {% else %}
+        <epi:info cssClass="{{ i.value }}">{{ i.text }}</epi:info>
+        {% endif %}
+        {% endfor %}
+        {% for qg in c.get_children %}
+        <epi:questionGroup ID="{{ qg.qg_id }}" position="{{ qg.position }}">
+            <epi:title>{{ qg.title }}</epi:title>
+            {% for i in qg.infoproperty_set.all %}
+            {% if i.text == None %}
+            <epi:info cssClass="{{ i.value }}"/>
+            {% else %}
+            <epi:info cssClass="{{ i.value }}">{{ i.text }}</epi:info>
+            {% endif %}
+            {% endfor %}
+            {% include 'q_tree/rh.xml' with thing=qg %}
+            {% for q_tn in qg.get_children %}
+                {% if q_tn.get_cname == 'Text Node' %}
+            <epi:textNode position="{{ q_tn.position }}">
+                <epi:info cssClass="textnode_textbody">{{ q_tn.title }} </epi:info>
+                        {% include 'q_tree/rh.xml' with thing=q_tn %}
+            </epi:textNode>
+                {% endif %}
+                {% if q_tn.get_cname == 'Question' %}
+                <epi:question ID="{{ q_tn.position }}" position="{{ q_tn.position }}">
+                <epi:variable ID="{{ q_tn.var_name  }}">
+                    <epi:varName>{{ q_tn.var_name  }}</epi:varName>
+                    <epi:dataType>
+                        <epi:string>
+                            <epi:maxLength>50</epi:maxLength>
+                        </epi:string>
+                    </epi:dataType>
+                </epi:variable>
+                        {% for o in q_tn.optionproperty_set.all %}
+                <epi:option position="{{ o.position }}">
+                    <epi:optionText>{{ o.text }}</epi:optionText>
+                    <epi:optionValue>{{ o.value }}</epi:optionValue>
+                </epi:option>
+                        {% endfor %}
+                       {% include 'q_tree/rh.xml' with thing=q_tn %}
+                </epi:question>
+                {% endif %}
+            {% endfor %}
+        </epi:questionGroup>
+        {% endfor %}
+        
+    </epi:section>
+{% endfor %}
+</epi:questionnaire>
