@@ -1,2 +1,8 @@
 {% extends "admin/q_tree/basetreenode/stylable_change_list.html" %}
 {% load admin_list stylable_admin_list %}
+
+{% block result_list %}
+    {% admin_actions %}
+    {% block result_list_content %}{% stylable_result_list cl template="admin/q_tree/basetreenode/jstree_list_results.html" %}{% endblock %}
+    {% if action_form and actions_on_bottom and cl.full_result_count %}{% admin_actions %}{% endif %}
+{% endblock %}
