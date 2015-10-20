@@ -1,15 +1,41 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from polymorphic_tree.admin import PolymorphicMPTTParentModelAdmin, PolymorphicMPTTChildModelAdmin
-from . import models
+from q_tree import models
+from django.forms.models import model_to_dict
 
 
 # The common admin functionality for all derived models:
 def copy_paste(modeladmin, request, queryset):
     for q in queryset:
-        q_new = q
-        q_new.id = None
-        q_new.save()
+        old_id = q.id
+        item = models.BaseTreeNode.copy_objects.get_subclass(pk=old_id)
+        new_object = model_to_dict(item)
+        new_object.pop('id')
+        parent_id = new_object['parent']
+        if parent_id:
+            parent = models.BaseTreeNode.objects.get(pk=parent_id)
+            new_object['parent'] = parent
+        try:
+            new_object.pop('basetreenode_ptr')
+        except:
+            pass
+        if isinstance(item, models.Questionnaire):
+            new_q = models.Questionnaire(**new_object)
+            new_q.save()
+        elif isinstance(item, models.Section):
+            new_s = models.Section(**new_object)
+            new_s.save()
+        elif isinstance(item, models.QuestionGroup):
+            new_qg = models.QuestionGroup(**new_object)
+            new_qg.save()
+        elif isinstance(item, models.Question):
+            new_q = models.Question(**new_object)
+            new_q.save()
+        elif isinstance(item, models.TextNode):
+            new_tn = models.TextNode(**new_object)
+            new_tn.save()
+
 
 
 class XMLPropertyInline(admin.TabularInline):
