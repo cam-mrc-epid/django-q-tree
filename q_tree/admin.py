@@ -62,6 +62,7 @@ class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
         }
 
 
+
 admin.site.register(models.BaseTreeNode, TreeNodeParentAdmin)
 
 
