@@ -20,7 +20,11 @@ class ImportApplication(objectifier.Application):
         data.q_id = 'q_id'
         
         if Questionnaire.objects.filter(q_id=data.q_id).exists():
-            print 'No chance' # forces you to cvhange the id on the existing 
+            print """Please set a unique Q id for all Questionnaires.  
+            This is used for management commands to uniquely identify
+            a questionnaire.  The default on import is set to 'q_id'.
+            The importer will not allow imports until previous imports
+            have had their q_ids changed.""" # forces you to change the id on the existing 
             # instance before a new one can be created.
         else:
             q = Questionnaire.objects.create(**data)
