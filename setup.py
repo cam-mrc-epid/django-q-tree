@@ -14,6 +14,7 @@ setup(
     include_package_data=True,
     install_requires = ['django-mptt', 'django-polymorphic',
                         'django-polymorphic-tree', 'beautifulsoup4',
+                        'django-model-utils',
                         ],
     dependency_links = ['https://github.com/davidgillies/xml-objectifier'],
     license='',  # example license
