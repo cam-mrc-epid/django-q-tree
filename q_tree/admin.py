@@ -5,6 +5,12 @@ from . import models
 
 
 # The common admin functionality for all derived models:
+def copy_paste(modeladmin, request, queryset):
+    for q in queryset:
+        q_new = q
+        q_new.id = None
+        q_new.save()
+
 
 class XMLPropertyInline(admin.TabularInline):
     model = models.XMLProperty
@@ -27,6 +33,8 @@ class BaseChildAdmin(PolymorphicMPTTChildModelAdmin):
     GENERAL_FIELDSET = (None, {
         'fields': ('parent', 'title'),
     })
+
+    actions = [copy_paste,]
 
     base_model = models.BaseTreeNode
     base_fieldsets = (
@@ -53,6 +61,8 @@ class TreeNodeParentAdmin(PolymorphicMPTTParentModelAdmin):
         (models.Question, BaseChildAdmin),
         (models.ExternalProgram, BaseChildAdmin),
     )
+
+    actions = [copy_paste,]
 
     list_display = ('title', 'actions_column',)
 
