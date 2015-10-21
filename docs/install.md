@@ -8,7 +8,7 @@ Install the objectifier dependency.
 
 Install the Editor app.
     
-    pip install git+git://github.com/davidgillies/django-q-tree
+    pip install git+git://github.com/cam-mrc-epid/django-q-tree
     
 Add the following to your INSTALLED_APPS in your django project settings
 
