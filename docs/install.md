@@ -4,7 +4,7 @@ Note: This commands below are dependent on Django 1.7 at the moment.  1.8 has ch
 
 Install the objectifier dependency.
 
-    pip install git+git://github.com/davidgillies/xml-objectifier
+    pip install git+git://github.com/cam-mrc-epid/xml-objectifier
 
 Install the Editor app.
     
