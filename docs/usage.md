@@ -1,7 +1,7 @@
 #Usage
 
 ##Admin Interface
-
+You can create Questionnaire, Section, etc. objects via the Admin interface.  These can be copy'n pasted and drag and dropped around the interface.  At present the copy/paste pastes a single object in place and does not include the children.  I don't think it would be a big job to add this functionality.  I'll give it a go if I have time.
 
 ##Importing XML
 To import xml
