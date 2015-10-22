@@ -40,6 +40,12 @@ where `<q_id>` is the Questionnaire's Q id.  You will see this value in the Ques
 The XML can be renderered via a browser and saved in that way using the url
 
         http://some-server:port/xml_out.xml?id=<q_id>
+        
+This requires the url to be set up in your project urls.py
+
+```python
+        url(r'^xml_out.xml/', 'q_tree.views.xml_view'),
+```
 
 where the q_id is the Questionnaire Q id value which can be set in the admin interface.      
 
